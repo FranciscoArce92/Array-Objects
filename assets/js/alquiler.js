@@ -1,4 +1,4 @@
-import { propiedadesAlquiler } from './data/propiedades_alquiler.js';
+import { propiedadesAlquiler } from "./data/propiedades_alquiler.js";
 
 const propertyContainer = document.getElementById("property-container");
 
@@ -7,11 +7,12 @@ function renderProperties(properties) {
 
   for (let property of properties) {
     let smokeIcon = property.smoke
-      ? '<i class="fas fa-smoking text-success"></i>'
-      : '<i class="fas fa-smoking-ban text-danger"></i>';
+      ? '<p class="text-success"><i class="fas fa-smoking"></i> Permitido fumar</p>'
+      : '<p class="text-danger"><i class="fas fa-smoking-ban"></i> Prohibido fumar</p>';
+
     let petsIcon = property.pets
-      ? '<i class="fas fa-paw text-success"></i>'
-      : '<i class="fas fa-paw text-danger"></i>';
+      ? '<p class="text-success"><i class="fas fa-paw"></i> Mascotas permitidas</p>'
+      : '<p class="text-danger"><i class="fas fa-paw"></i> Mascotas no permitidas</p>';
 
     const card = `
       <div class="col-md-4 mb-4">
@@ -25,12 +26,12 @@ function renderProperties(properties) {
             <h5 class="card-title">${property.nombre}</h5>
             <p class="card-text">${property.descripcion}</p>
             <p><i class="fas fa-map-marker-alt"></i> ${property.ubicacion}</p>
-            <p><i class="fas fa-bed"></i> ${property.habitaciones} Habitaciones</p>
+            <p><i class="fas fa-bed"></i> ${
+              property.habitaciones
+            } Habitaciones</p>
             <p><i class="fas fa-dollar-sign"></i>${property.costo}</p>
-            <p>${smokeIcon} ${property.smoke ? "Permitido fumar" : "Prohibido fumar"}</p>
-            <p>${petsIcon} ${
-              property.pets ? "Se permiten mascotas" : "No se permiten mascotas"
-            }</p>
+            ${smokeIcon}
+            ${petsIcon}
           </div>
         </div>
       </div>
